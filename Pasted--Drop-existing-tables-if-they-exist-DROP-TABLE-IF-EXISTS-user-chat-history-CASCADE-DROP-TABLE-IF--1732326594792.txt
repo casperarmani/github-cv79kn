@@ -1,0 +1,64 @@
+-- Drop existing tables if they exist
+DROP TABLE IF EXISTS user_chat_history CASCADE;
+DROP TABLE IF EXISTS video_analysis_output CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+
+-- Create extension for vector type
+CREATE EXTENSION IF NOT EXISTS vector;
+
+-- Create table for users
+CREATE TABLE public.users (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    email TEXT NOT NULL UNIQUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create chat sessions table
+CREATE TABLE public.chat_sessions (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    user_id UUID NOT NULL,
+    title TEXT NOT NULL DEFAULT 'New Chat',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP WITH TIME ZONE,
+    FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE
+);
+
+-- Create table for user chat history
+CREATE TABLE public.user_chat_history (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    session_id UUID NOT NULL,
+    user_id UUID NOT NULL,
+    message TEXT NOT NULL,
+    chat_type TEXT DEFAULT 'text',
+    "TIMESTAMP" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP WITH TIME ZONE,
+    vector vector(384),
+    FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE,
+    FOREIGN KEY (session_id) REFERENCES chat_sessions(id) ON DELETE CASCADE,
+    CHECK (LENGTH(message) > 0)
+);
+
+-- Create table for video analysis output
+CREATE TABLE public.video_analysis_output (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id UUID NOT NULL,
+    upload_file_name TEXT NOT NULL,
+    analysis TEXT NOT NULL,
+    video_duration TEXT,
+    video_format TEXT,
+    "TIMESTAMP" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP WITH TIME ZONE,
+    vector vector(384),
+    FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE,
+    CHECK (LENGTH(upload_file_name) > 0)
+);
+
+-- Create indexes
+CREATE INDEX IF NOT EXISTS chat_sessions_user_id_idx ON public.chat_sessions(user_id);
+CREATE INDEX IF NOT EXISTS user_chat_history_user_id_idx ON public.user_chat_history(user_id);
+CREATE INDEX IF NOT EXISTS user_chat_history_session_id_idx ON public.user_chat_history(session_id);
+CREATE INDEX IF NOT EXISTS video_analysis_output_user_id_idx ON public.video_analysis_output(user_id);

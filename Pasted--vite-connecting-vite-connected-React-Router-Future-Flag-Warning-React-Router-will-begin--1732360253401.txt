@@ -1,0 +1,66 @@
+[vite] connecting...
+[vite] connected.
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+⚠️ React Router Future Flag Warning: The persistence behavior of fetchers is changing in v7. You can use the `v7_fetcherPersist` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_fetcherpersist.
+⚠️ React Router Future Flag Warning: Casing of `formMethod` fields is being normalized to uppercase in v7. You can use the `v7_normalizeFormMethod` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_normalizeformmethod.
+⚠️ React Router Future Flag Warning: `RouterProvider` hydration behavior is changing in v7. You can use the `v7_partialHydration` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_partialhydration.
+⚠️ React Router Future Flag Warning: The revalidation behavior after 4xx/5xx `action` responses is changing in v7. You can use the `v7_skipActionErrorRevalidation` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_skipactionerrorrevalidation.
+Converted Chats: 
+(25) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+0: Object
+1: Object
+2: Object
+3: Object
+4: Object
+5: Object
+6: Object
+7: Object
+8: Object
+9: Object
+10: Object
+11: Object
+12: Object
+13: Object
+14: Object
+15: Object
+16: Object
+17: Object
+18: Object
+19: Object
+20: Object
+21: Object
+22: Object
+23: Object
+24: Object
+length: 25
+[[Prototype]]: Array(0)
+Converted Chats: 
+(25) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+0: Object
+1: Object
+2: Object
+3: Object
+4: Object
+5: Object
+6: Object
+7: Object
+8: Object
+9: Object
+10: Object
+11: Object
+12: Object
+13: Object
+14: Object
+15: Object
+16: Object
+17: Object
+18: Object
+19: Object
+20: Object
+21: Object
+22: Object
+23: Object
+24: Object
+length: 25
+[[Prototype]]: Array(0)
